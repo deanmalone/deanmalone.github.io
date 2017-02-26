@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dean Malone&#39;s Blog</title>
+    <link>/index.xml</link>
+    <description>Recent content on Dean Malone&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Piano Play: Angular 2 piano notation app</title>
+      <link>/post/piano-play/</link>
+      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/piano-play/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Piano Play&lt;/strong&gt; is an Angular 2 application to help beginners learn music notation in a simple and fun way.&lt;/p&gt;
+
+&lt;p&gt;My family were recently given a beautiful old &lt;strong&gt;Ed Seiler&lt;/strong&gt; piano. It was built in the early 1900s and is in great condition with a rich and vibrant sound.
+To improve my rusty piano skills, I thought it would be fun to build a piano web app to (re)learn the basics of piano notation, and to play more with &lt;strong&gt;Angular 2.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Inspired by Joseph Woodward&amp;rsquo;s &lt;a href=&#34;https://github.com/JosephWoodward/Angular2PianoNoteTrainingGame&#34; target=&#34;_blank&#34;&gt;Piano Note Trainer&lt;/a&gt;, I set about creating &lt;strong&gt;Piano Play&lt;/strong&gt; and was pleasantly surprised at how quick it was to put together the core of the application in Angular 2, with the help of &lt;a href=&#34;https://cli.angular.io/&#34; target=&#34;_blank&#34;&gt;Angular CLI.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You can check out the app here: &lt;a href=&#34;http://deanmalone.net/PianoPlay&#34; target=&#34;_blank&#34;&gt;Piano Play&lt;/a&gt;, and the source code is &lt;a href=&#34;https://github.com/deanmalone/PianoPlay&#34; target=&#34;_blank&#34;&gt;available on GitHub.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;the-app&#34;&gt;The App&lt;/h1&gt;
+
+&lt;p&gt;The &lt;strong&gt;Piano Play&lt;/strong&gt; app has two modes - &lt;strong&gt;Play mode&lt;/strong&gt; and &lt;strong&gt;Quiz mode&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;play-mode&#34;&gt;Play mode&lt;/h3&gt;
+
+&lt;p&gt;Play mode is for learning and exploring piano keys and notes.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can simply press the key on the &lt;strong&gt;piano keyboard&lt;/strong&gt; and you will hear it being played and see the note displayed in the &lt;strong&gt;piano score&lt;/strong&gt;, and in the &lt;strong&gt;Now playing&lt;/strong&gt; panel.&lt;/li&gt;
+&lt;li&gt;You can click on the note(s) in the &lt;strong&gt;Now playing&lt;/strong&gt; panel to play that note. You will notice that when you press a black key, two notes will be displayed in the &lt;strong&gt;Now playing&lt;/strong&gt; panel, with the first of these notes displayed in the piano score. The important point here is that a black key can represent either a sharp (♯) or a flat (♭) note.&lt;/li&gt;
+&lt;li&gt;You can also click on the note directly in the piano score to play that note again.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;quiz-mode&#34;&gt;Quiz mode&lt;/h3&gt;
+
+&lt;p&gt;In Quiz mode you can test yourself to see how well you know piano notation.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Select your level - Easy, Medium, or Hard.
+
+&lt;ul&gt;
+&lt;li&gt;Easy :  includes only natural notes across the middle two octaves.&lt;/li&gt;
+&lt;li&gt;Medium : includes only natural notes across the entire keyboard (four octaves).&lt;/li&gt;
+&lt;li&gt;Hard : includes all notes (natural and accidentals) from all octaves.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;When a note is displayed on the piano score, press the correct key on the piano keyboard.&lt;/li&gt;
+&lt;li&gt;You will see your score as you go, so you will know where you may need more practice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;application-architecture&#34;&gt;Application Architecture&lt;/h1&gt;
+
+&lt;p&gt;The app is compromised of the following 6 components:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/piano-play-components.png&#34; alt=&#34;Components&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Along with the above components, there are additional services and classes all contained within the single App Module as shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/piano-play-app-architecture.png&#34; alt=&#34;Application Architecture&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;app-component&#34;&gt;App component&lt;/h3&gt;
+
+&lt;p&gt;The App component is the main component of the application containing all the other components in its view template.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It holds the main application state and passes this state (such as mode, quiz data), as needed, to the child components using &lt;strong&gt;input binding&lt;/strong&gt; (&lt;code&gt;@Input&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;It uses &lt;strong&gt;event binding&lt;/strong&gt; to handle events from keyboard, play-control and quiz-info child components.&lt;/li&gt;
+&lt;li&gt;Depending on the current mode (Play or Quiz) only one of the note-info or quiz-info components is displayed using the &lt;strong&gt;ngIf directive.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;play-control-component&#34;&gt;Play Control component&lt;/h3&gt;
+
+&lt;p&gt;The Play Control component is a very simple component which allows the user to select the mode, either &lt;strong&gt;Play&lt;/strong&gt; or &lt;strong&gt;Quiz&lt;/strong&gt;, raising the &lt;strong&gt;modeSelected&lt;/strong&gt; event.&lt;/p&gt;
+
+&lt;h3 id=&#34;keyboard-component&#34;&gt;Keyboard component&lt;/h3&gt;
+
+&lt;p&gt;The Keyboard component renders an array of IPianoKeys, each with a unique key number (keyId), using &lt;a href=&#34;http://cssdeck.com/labs/pure-css3-piano&#34; target=&#34;_blank&#34;&gt;CSS Piano&lt;/a&gt; to create the keyboard.&lt;/p&gt;
+
+&lt;p&gt;When a piano key is pressed the &lt;strong&gt;keyPlayed&lt;/strong&gt; event is raised with the corresponding key number.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  @Output() keyPlayed = new EventEmitter&amp;lt;number&amp;gt;()
+  ...
+  keyPress(keyNumber: number) {
+    this.keyPlayed.emit(keyNumber);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;note-info-component&#34;&gt;Note Info component&lt;/h3&gt;
+
+&lt;p&gt;The Note Info component is only displayed when in Play mode. It subscribes to the &lt;strong&gt;notePlayed$&lt;/strong&gt; observable from the &lt;strong&gt;Piano Service&lt;/strong&gt; and displays the currently played note. In the case of black keys, it also displays both the sharp (♯) or a flat (♭) notes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;constructor(private pianoService: PianoService) {
+  this.subscription = pianoService.notePlayed$.subscribe(
+    pianoNote =&amp;gt; {
+      this.title = &amp;quot;Now playing&amp;quot;;
+      this.currentNote = pianoNote;
+      this.alternateNote = this.pianoService.getAlternateNote(pianoNote.noteId);
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;quiz-info-component&#34;&gt;Quiz Info component&lt;/h3&gt;
+
+&lt;p&gt;The Quiz Info component is displayed only in Quiz mode. It provides quiz level selection, quiz score, result messages and buttons to start and try again. It subscribes to the &lt;strong&gt;quizResult$&lt;/strong&gt; observable from the &lt;strong&gt;Quiz Service&lt;/strong&gt; so it can display the current quiz result.&lt;/p&gt;
+
+&lt;h3 id=&#34;piano-service&#34;&gt;Piano service&lt;/h3&gt;
+
+&lt;p&gt;The Piano service maintains a map of piano keys (ie 28) to notes (ie &amp;ldquo;c2&amp;rdquo;) and provides various functions to play, retrieve and convert notes. It provides a &lt;strong&gt;notePlayed$&lt;/strong&gt; observable, and publishes PianoNotes when the &lt;strong&gt;playNote&lt;/strong&gt; or &lt;strong&gt;playNoteByKeyId&lt;/strong&gt; methods are called.&lt;/p&gt;
+
+&lt;h3 id=&#34;sound-service&#34;&gt;Sound service&lt;/h3&gt;
+
+&lt;p&gt;The Sound service uses the &lt;strong&gt;Web Audio API&lt;/strong&gt; to play the piano sound WAV files. Each piano key has a corresponding sound file using the keyId as the filename. I used the sounds files from Joseph Woodward&amp;rsquo;s &lt;a href=&#34;https://github.com/JosephWoodward/Angular2PianoNoteTrainingGame&#34; target=&#34;_blank&#34;&gt;Piano Note Trainer.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;During initialization, the &lt;strong&gt;AudioContext&lt;/strong&gt; is created and the sounds are loaded into a buffer. The sounds are loaded asynchronously via XMLHttpRequests, so it can take a little time before all the sounds are ready to play.&lt;/p&gt;
+
+&lt;p&gt;Interestingly I did find in necessary to use the following hack to get the Audio API to play nice in iOS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Hack to support AudioContext on iOS
+if (typeof AudioContext !== &#39;undefined&#39;) {
+    this.context = new AudioContext();
+} else if (typeof (window as any).webkitAudioContext !== &#39;undefined&#39;) {
+    this.context = new (window as any).webkitAudioContext();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;quiz-service&#34;&gt;Quiz service&lt;/h3&gt;
+
+&lt;p&gt;The Quiz service manages the creation of the quiz, keeps track of the quiz questions (ie notes) and score, and also provides a &lt;strong&gt;quizResult$&lt;/strong&gt; observable to which it publishes QuizResults.&lt;/p&gt;
+
+&lt;h3 id=&#34;piano-notation&#34;&gt;Piano Notation&lt;/h3&gt;
+
+&lt;p&gt;To render the piano notation I decided to use the very cool &lt;a href=&#34;http://www.verovio.org/javascript.xhtml&#34; target=&#34;_blank&#34;&gt;Verovio JavaScript toolkit.&lt;/a&gt; It outputs great quality music notation in SVG format that can be directly bound to HTML objects for display.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/piano-notation.png&#34; alt=&#34;PianoNotation&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The library exposes the &lt;strong&gt;renderData&lt;/strong&gt; method, which takes in notation data and options, and returns the rendered SVG output.
+The notation data is in &lt;a href=&#34;http://music-encoding.org/downloads/latest-release/&#34; target=&#34;_blank&#34;&gt;MEI format&lt;/a&gt; which is a rich XML-based schema for defining music notation established by the &lt;a href=&#34;http://music-encoding.org/&#34; target=&#34;_blank&#34;&gt;The Music Encoding Initiative (MEI).&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Everytime a note is played, this notation is re-generated, by updating the notation data (xml) and calling the &lt;strong&gt;renderData&lt;/strong&gt; method. To get the precise layout I wanted I did need to insert rest notes along with the actual notes in the opposite staff. That is, when a note is played in the treble staff, a rest note is also added to the bass staff and vice-versa. Spacing notes are also added to ensure that the piano score spans the full width, even when there no actual notes present. These rest notes and spacing notes are present in the SVG but are hidden via CSS.&lt;/p&gt;
+
+&lt;p&gt;This is all encapsulated in the &lt;strong&gt;Notation Service&lt;/strong&gt; which is used exclusively by the &lt;strong&gt;Notation Component&lt;/strong&gt;, which outputs the SVG using a direct innerHtml binding in its view.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div style=&amp;quot;...&amp;quot; [innerHTML]=&amp;quot;notationAsSVG | safe: &#39;html&#39;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To provide user interaction with the piano notaton, jQuery is used to attach an event handler (noteClicked) to each note, and also to display notes in color. Each note (svg) is assigned an id corresponding to the note number, so we can easily select it in jQuery or CSS. However for this to work correctly I needed to use one of the Angular &lt;a href=&#34;https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html&#34; target=&#34;_blank&#34;&gt;lifecycle hooks&lt;/a&gt; - ngAfterViewChecked.&lt;/p&gt;
+
+&lt;p&gt;When the &lt;strong&gt;ngAfterViewChecked&lt;/strong&gt; lifecycle hook is called the view has been created and checked, so at this point we can use jQuery to setup eventhandlers and set the color (fill) of each note to the specified color in the noteColor array. The noteColor array is updated separately by the &lt;strong&gt;handleQuizResult&lt;/strong&gt; observable handler, which stores note color based on the received quiz result - green for correct and red for incorrect.&lt;/p&gt;
+
+&lt;p&gt;The notation component subscribes to both the &lt;strong&gt;quizResult$&lt;/strong&gt; and &lt;strong&gt;notePlayed$&lt;/strong&gt; observables, to keep the notation view updated.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;pianoService.notePlayed$.subscribe(note=&amp;gt;this.handleNotePlayed(note));
+quizService.quizResult$.subscribe(result=&amp;gt;this.handleQuizResult(result));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;For more details take a look at the source code on &lt;a href=&#34;https://github.com/deanmalone/PianoPlay&#34; target=&#34;_blank&#34;&gt;GitHub.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;credits&#34;&gt;Credits:&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://josephwoodward.co.uk/&#34; target=&#34;_blank&#34;&gt;Joseph Woodward&lt;/a&gt; for his cool &lt;a href=&#34;https://github.com/JosephWoodward/Angular2PianoNoteTrainingGame&#34; target=&#34;_blank&#34;&gt;Piano Note Trainer&lt;/a&gt;, including the piano wav files.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cssdeck.com/user/tovic&#34; target=&#34;_blank&#34;&gt;Taufik Nurrohman&lt;/a&gt; for the awesome looking &lt;a href=&#34;http://cssdeck.com/labs/pure-css3-piano&#34; target=&#34;_blank&#34;&gt;CSS Piano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The team at &lt;a href=&#34;http://rism-ch.org/&#34; target=&#34;_blank&#34;&gt;RISM-Switzerland&lt;/a&gt; for their amazing open-source SVG-based music notation library &lt;a href=&#34;http://www.verovio.org/javascript.xhtml&#34; target=&#34;_blank&#34;&gt;Verovio JavaScript toolkit.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Kim Biesbjerg for his &lt;a href=&#34;https://forum.ionicframework.com/t/inserting-html-via-angular-2-use-of-domsanitizationservice-bypasssecuritytrusthtml/62562/5&#34; target=&#34;_blank&#34;&gt;SafePipe&lt;/a&gt; code.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>&lt;p&gt;Hi, I&amp;rsquo;m Dean Malone, a software engineer based in Melbourne, Australia.&lt;/p&gt;
+
+&lt;p&gt;I enjoy designing, architecting, and building software. I use a range of technologies, including .NET, C#, ASP.NET, WPF, HTML/CSS, JavaScript, Angular, Node, AWS and Azure.&lt;/p&gt;
+
+&lt;p&gt;I love learning and honing my skills as a software engineer and architect.&lt;/p&gt;
+
+&lt;p&gt;You can contact me via &lt;a href=&#34;https://twitter.com/deanwmalone&#34; target=&#34;_blank&#34;&gt;Twitter&lt;/a&gt; or &lt;a href=&#34;https://au.linkedin.com/in/deanwmalone&#34; target=&#34;_blank&#34;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
