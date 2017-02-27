@@ -383,7 +383,7 @@ select {
 	font-size: 32px;
 	font-size: 2rem;
 	line-height: 1;
-	color: #1976D2;
+	/*color: #1976D2;*/
 }
 
 .mr-header-tagline {
@@ -391,13 +391,11 @@ select {
 	font-size: 14px;
 	font-size: 0.875rem;
 	line-height: 1;
-	color: #FFFFF0; 
+	color: #1976D2; 
 	padding-top: 10px;
 	margin-top: 10px;
 	border-top: 1px solid #e5e5e5;
 }
-
-
 
 /*media all*/
 .link {
