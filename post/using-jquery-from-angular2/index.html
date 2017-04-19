@@ -9,16 +9,19 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="theme-color" content="#ffffff">
-<title>Github</title>
+<title>Using jQuery from Angular 2</title>
 <meta name="description" content="I&#39;m Dean Malone, a software engineer based in Melbourne, Australia. This is my blog on software engineering and architecture, with a particular focus on .NET, web development, and cloud computing.">
 <meta name="generator" content="Hugo 0.18.1" />
-<meta property="og:title" content="Github" />
-<meta property="og:description" content="I&#39;m Dean Malone, a software engineer based in Melbourne, Australia. This is my blog on software engineering and architecture, with a particular focus on .NET, web development, and cloud computing." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/github/" />
+<meta property="og:title" content="Using jQuery from Angular 2" />
+<meta property="og:description" content="At times you may need to use jQuery from Angular 2. Here are a couple of ways to do just that.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/using-jquery-from-angular2/" />
 
 
-<meta property="og:updated_time" content="2017-04-12T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2017-02-24T00:00:00&#43;00:00"/>
+
 
 
 
@@ -29,7 +32,7 @@
 
 
 <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-<link rel="alternate" type="application/rss+xml" title="Dean Malone Feed" href="/tags/github/index.xml">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600" type="text/css" media="all" />
 <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
 <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
@@ -77,39 +80,102 @@
 		<div class="mr-wrapper clearfix">
 
 
-	<div class="main-content mr-loop mr-content" role="main">
-		
-		<header class="page-header">
-			<h1 class="page-title">Github</h1>
-		</header>
-		
-		
-		
-		<article class="mr-loop-item post type-post hentry clearfix">
+<div class="main-content mr-content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="entry-header clearfix">
+			<h1 class="entry-title">Using jQuery from Angular 2</h1>
+
 			
-			<div class="mr-loop-content clearfix">
-				<header class="mr-loop-header">
-					<h3 class="entry-title mr-loop-title">
-						<a href="/post/how-to-fork-your-own-repo-on-github/" rel="bookmark">How to fork your own repository on GitHub</a>
-					</h3>
-					<div class="mr-meta mr-loop-meta">
-						<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-						<time class="mr-meta-date updated" datetime="2017-04-12 00:00:00 &#43;0000 UTC">April 12, 2017</time>
-					</div>
-				</header>
-				<div class="mr-loop-excerpt">
-					<div class="mr-excerpt">
-						<p>Forking someone&rsquo;s repository on GitHub is very easy. You just click the <strong>Fork</strong> button on their repository page, and you will get your own personal copy of their repository in your GitHub account, simply clone it and you&rsquo;re good to go.</p>
+			<p class="mr-meta entry-meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="entry-meta-date updated" datetime="2017-02-24 00:00:00 &#43;0000 UTC">February 24, 2017</time>
+			</p>
+			
+		</header>
+		<div class="entry-content clearfix">
+			
+			<p>At times you may need to use jQuery from Angular 2. Here are a couple of ways to do just that.</p>
 
-<p>However when you try to fork one of your <strong>own</strong> repositories then you will quickly discover this <strong>doesn&rsquo;t</strong> work.</p>
-					</div>
-				</div>
-			</div>
-		</article>
-		
+<p></p>
 
+<h2 id="method-1-the-quick-way">Method 1: The quick way</h2>
+
+<p>The quick way to use jQuery from Angular 2 is to simply:</p>
+
+<h4 id="1-add-a-jquery-script-tag">1. Add a jQuery script tag</h4>
+
+<p>In your index.html add a script tag with the path to the jQuery library.</p>
+
+<pre><code>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<h4 id="2-declare-as-any">2. Declare $ as any</h4>
+
+<p>Where you need to use jQuery, simply declare &lsquo;$&rsquo; of type <strong>any</strong> after the import statements.</p>
+
+<pre><code>import { Component, Input, OnInit, AfterViewChecked } from '@angular/core';
+...
+declare var $: any;
+</code></pre>
+
+<h4 id="3-call-jquery">3. Call jQuery</h4>
+
+<p>Call jQuery ($) as needed, but from within the appropriate Angular lifecycle hook, ie <strong>ngAfterViewInit</strong> or <strong>ngAfterViewChecked</strong></p>
+
+<pre><code>ngAfterViewChecked() {
+    let self=this;
+    $(&quot;g.note&quot;).off().on('click', function() { self.noteClicked(this.id); });
+
+    ...
+}
+</code></pre>
+
+<p>This is the approach I took for <a href="../piano-play/">PianoPlay</a>, however there is a better way.</p>
+
+<h2 id="method-2-a-better-way-also-quick">Method 2: A better way (also quick)</h2>
+
+<p>Whilst the previous approach works, it doesn&rsquo;t provide a very good developer experience. A better way involves installing jQuery via NPM and using the jQuery typescript declaration file.</p>
+
+<h4 id="1-install-jquery-using-npm">1. Install jQuery using NPM</h4>
+
+<pre><code>npm install --save jquery
+</code></pre>
+
+<h4 id="2-install-the-jquery-declaration-file">2. Install the jQuery declaration file</h4>
+
+<pre><code>npm install -D @types/jquery
+</code></pre>
+
+<h4 id="3-import-jquery">3. Import jQuery</h4>
+
+<pre><code>import * as $ from 'jquery';
+</code></pre>
+
+<p>This provides a typed reference to jQuery, which means in Visual Studio Code, you go from this:</p>
+
+<p><img src="/img/jquery-method1.png" alt="Method 1" /></p>
+
+<p>To this..</p>
+
+<p><img src="/img/jquery-method2.png" alt="Method 2" /></p>
+
+<p>Much better IMHO :)</p>
+		</div>
 		
-	</div>
+<div class="entry-tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul>
+		<li><a href="/tags/angular2/" rel="tag">Angular2</a></li>
+		<li><a href="/tags/jquery/" rel="tag">jQuery</a></li>
+		
+	</ul>
+</div>
+	</article>
+	
+	
+
+	
+</div>
 
 <aside class="mr-sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 	

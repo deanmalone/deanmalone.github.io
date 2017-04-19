@@ -6,8 +6,131 @@
     <description>Recent content on Dean Malone</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Apr 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to fork your own repository on GitHub</title>
+      <link>/post/how-to-fork-your-own-repo-on-github/</link>
+      <pubDate>Wed, 12 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/how-to-fork-your-own-repo-on-github/</guid>
+      <description>&lt;p&gt;Forking someone&amp;rsquo;s repository on GitHub is very easy. You just click the &lt;strong&gt;Fork&lt;/strong&gt; button on their repository page, and you will get your own personal copy of their repository in your GitHub account, simply clone it and you&amp;rsquo;re good to go.&lt;/p&gt;
+
+&lt;p&gt;However when you try to fork one of your &lt;strong&gt;own&lt;/strong&gt; repositories then you will quickly discover this &lt;strong&gt;doesn&amp;rsquo;t&lt;/strong&gt; work.&lt;/p&gt;
+
+&lt;p&gt;
+Clicking the Fork button on your own repository does nothing! (&amp;hellip;other than a page refresh). For some reason, GitHub do not support creating forks from your own repository. However you can achieve something similar using &lt;strong&gt;upstream remotes&lt;/strong&gt; in Git.&lt;/p&gt;
+
+&lt;p&gt;The steps are as follows:&lt;/p&gt;
+
+&lt;h2 id=&#34;1-create-a-new-repository-for-your-fork&#34;&gt;1. Create a new repository for your fork&lt;/h2&gt;
+
+&lt;p&gt;On GitHub, create your new (empty) repository &lt;a href=&#34;https://github.com/new&#34;&gt;https://github.com/new&lt;/a&gt;, using the default settings. This will be your forked repository.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-clone-your-fork&#34;&gt;2. Clone your fork&lt;/h2&gt;
+
+&lt;p&gt;Make a local copy of your new forked repository using &lt;strong&gt;git clone&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/&amp;lt;username&amp;gt;/&amp;lt;forked-repo&amp;gt;.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-add-your-original-repository-as-an-upstream-remote&#34;&gt;3. Add your original repository as an Upstream Remote&lt;/h2&gt;
+
+&lt;p&gt;Add your original repository as an upstream remote in your forked repository. Doing this will allow you to pull in changes from your original repository to your forked repository.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd &amp;lt;forked-repo&amp;gt;
+git remote add upstream https://github.com/&amp;lt;username&amp;gt;/&amp;lt;original-repo&amp;gt;.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-update-your-fork&#34;&gt;4. Update your fork&lt;/h2&gt;
+
+&lt;p&gt;Update your fork with all the changes from your original repository using &lt;strong&gt;git pull&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git pull upstream master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;5-push&#34;&gt;5. Push&lt;/h2&gt;
+
+&lt;p&gt;When you are done, simply &lt;strong&gt;push&lt;/strong&gt; your new fork back into GitHub.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Using jQuery from Angular 2</title>
+      <link>/post/using-jquery-from-angular2/</link>
+      <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/using-jquery-from-angular2/</guid>
+      <description>&lt;p&gt;At times you may need to use jQuery from Angular 2. Here are a couple of ways to do just that.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;method-1-the-quick-way&#34;&gt;Method 1: The quick way&lt;/h2&gt;
+
+&lt;p&gt;The quick way to use jQuery from Angular 2 is to simply:&lt;/p&gt;
+
+&lt;h4 id=&#34;1-add-a-jquery-script-tag&#34;&gt;1. Add a jQuery script tag&lt;/h4&gt;
+
+&lt;p&gt;In your index.html add a script tag with the path to the jQuery library.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-declare-as-any&#34;&gt;2. Declare $ as any&lt;/h4&gt;
+
+&lt;p&gt;Where you need to use jQuery, simply declare &amp;lsquo;$&amp;rsquo; of type &lt;strong&gt;any&lt;/strong&gt; after the import statements.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import { Component, Input, OnInit, AfterViewChecked } from &#39;@angular/core&#39;;
+...
+declare var $: any;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;3-call-jquery&#34;&gt;3. Call jQuery&lt;/h4&gt;
+
+&lt;p&gt;Call jQuery ($) as needed, but from within the appropriate Angular lifecycle hook, ie &lt;strong&gt;ngAfterViewInit&lt;/strong&gt; or &lt;strong&gt;ngAfterViewChecked&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ngAfterViewChecked() {
+    let self=this;
+    $(&amp;quot;g.note&amp;quot;).off().on(&#39;click&#39;, function() { self.noteClicked(this.id); });
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the approach I took for &lt;a href=&#34;../piano-play/&#34;&gt;PianoPlay&lt;/a&gt;, however there is a better way.&lt;/p&gt;
+
+&lt;h2 id=&#34;method-2-a-better-way-also-quick&#34;&gt;Method 2: A better way (also quick)&lt;/h2&gt;
+
+&lt;p&gt;Whilst the previous approach works, it doesn&amp;rsquo;t provide a very good developer experience. A better way involves installing jQuery via NPM and using the jQuery typescript declaration file.&lt;/p&gt;
+
+&lt;h4 id=&#34;1-install-jquery-using-npm&#34;&gt;1. Install jQuery using NPM&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install --save jquery
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-install-the-jquery-declaration-file&#34;&gt;2. Install the jQuery declaration file&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -D @types/jquery
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;3-import-jquery&#34;&gt;3. Import jQuery&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;import * as $ from &#39;jquery&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides a typed reference to jQuery, which means in Visual Studio Code, you go from this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/jquery-method1.png&#34; alt=&#34;Method 1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To this..&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/jquery-method2.png&#34; alt=&#34;Method 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Much better IMHO :)&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Piano Play: Angular 2 piano notation app</title>
@@ -185,9 +308,7 @@ quizService.quizResult$.subscribe(result=&amp;gt;this.handleQuizResult(result));
       <guid>/about/</guid>
       <description>&lt;p&gt;Hi, I&amp;rsquo;m Dean Malone, a software engineer based in Melbourne, Australia.&lt;/p&gt;
 
-&lt;p&gt;I enjoy designing, architecting, and building software. I use a range of technologies, including .NET, C#, ASP.NET, WPF, HTML/CSS, JavaScript, Angular, Node, AWS and Azure.&lt;/p&gt;
-
-&lt;p&gt;I love learning and honing my skills as a software engineer and architect.&lt;/p&gt;
+&lt;p&gt;This is my blog on software engineering and architecture, with a particular focus on .NET, web development, and cloud computing.&lt;/p&gt;
 
 &lt;p&gt;You can contact me via &lt;a href=&#34;https://twitter.com/deanwmalone&#34; target=&#34;_blank&#34;&gt;Twitter&lt;/a&gt; or &lt;a href=&#34;https://au.linkedin.com/in/deanwmalone&#34; target=&#34;_blank&#34;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
 </description>

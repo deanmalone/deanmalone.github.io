@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jquery on Dean Malone</title>
+    <link>/tags/jquery/index.xml</link>
+    <description>Recent content in Jquery on Dean Malone</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Using jQuery from Angular 2</title>
+      <link>/post/using-jquery-from-angular2/</link>
+      <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/using-jquery-from-angular2/</guid>
+      <description>&lt;p&gt;At times you may need to use jQuery from Angular 2. Here are a couple of ways to do just that.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;method-1-the-quick-way&#34;&gt;Method 1: The quick way&lt;/h2&gt;
+
+&lt;p&gt;The quick way to use jQuery from Angular 2 is to simply:&lt;/p&gt;
+
+&lt;h4 id=&#34;1-add-a-jquery-script-tag&#34;&gt;1. Add a jQuery script tag&lt;/h4&gt;
+
+&lt;p&gt;In your index.html add a script tag with the path to the jQuery library.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-declare-as-any&#34;&gt;2. Declare $ as any&lt;/h4&gt;
+
+&lt;p&gt;Where you need to use jQuery, simply declare &amp;lsquo;$&amp;rsquo; of type &lt;strong&gt;any&lt;/strong&gt; after the import statements.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import { Component, Input, OnInit, AfterViewChecked } from &#39;@angular/core&#39;;
+...
+declare var $: any;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;3-call-jquery&#34;&gt;3. Call jQuery&lt;/h4&gt;
+
+&lt;p&gt;Call jQuery ($) as needed, but from within the appropriate Angular lifecycle hook, ie &lt;strong&gt;ngAfterViewInit&lt;/strong&gt; or &lt;strong&gt;ngAfterViewChecked&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ngAfterViewChecked() {
+    let self=this;
+    $(&amp;quot;g.note&amp;quot;).off().on(&#39;click&#39;, function() { self.noteClicked(this.id); });
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the approach I took for &lt;a href=&#34;../piano-play/&#34;&gt;PianoPlay&lt;/a&gt;, however there is a better way.&lt;/p&gt;
+
+&lt;h2 id=&#34;method-2-a-better-way-also-quick&#34;&gt;Method 2: A better way (also quick)&lt;/h2&gt;
+
+&lt;p&gt;Whilst the previous approach works, it doesn&amp;rsquo;t provide a very good developer experience. A better way involves installing jQuery via NPM and using the jQuery typescript declaration file.&lt;/p&gt;
+
+&lt;h4 id=&#34;1-install-jquery-using-npm&#34;&gt;1. Install jQuery using NPM&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install --save jquery
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;2-install-the-jquery-declaration-file&#34;&gt;2. Install the jQuery declaration file&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -D @types/jquery
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;3-import-jquery&#34;&gt;3. Import jQuery&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;import * as $ from &#39;jquery&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This provides a typed reference to jQuery, which means in Visual Studio Code, you go from this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/jquery-method1.png&#34; alt=&#34;Method 1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To this..&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/jquery-method2.png&#34; alt=&#34;Method 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Much better IMHO :)&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
